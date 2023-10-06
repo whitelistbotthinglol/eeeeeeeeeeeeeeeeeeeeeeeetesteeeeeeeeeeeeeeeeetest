@@ -2237,7 +2237,7 @@ do
 			end
 		until not vapeInjected
 	end)
-	--[[local textlabel = Instance.new("TextLabel")
+	local textlabel = Instance.new("TextLabel")
 	textlabel.Size = UDim2.new(1, 0, 0, 36)
 	textlabel.Text = "A new discord has been created, click the icon to join."
 	textlabel.BackgroundTransparency = 1
@@ -2248,7 +2248,7 @@ do
 	textlabel.TextColor3 = Color3.new(1, 1, 1)
 	textlabel.Position = UDim2.new(0, 0, 1, -36)
 	textlabel.Parent = GuiLibrary.MainGui.ScaledGui.ClickGui
-end--]]
+end
 
 runFunction(function()
 	local handsquare = Instance.new("ImageLabel")
