@@ -1326,7 +1326,7 @@ runFunction(function()
 		RuntimeLib = require(replicatedStorageService["rbxts_include"].RuntimeLib),
 		ScytheController = KnitClient.Controllers.ScytheController,
 		Shop = require(replicatedStorageService.TS.games.bedwars.shop["bedwars-shop"]).BedwarsShop,
-		ShopItems = debug.getupvalue(debug.getupvalue(require(replicatedStorageService.TS.games.bedwars.shop["bedwars-shop"]).BedwarsShop.getShopItem, 1), 2),
+		ShopItems = debug.getupvalue(debug.getupvalue(require(replicatedStorageService.TS.games.bedwars.shop["bedwars-shop"]).BedwarsShop.getShopItem, 1), 3),
 		SoundList = require(replicatedStorageService.TS.sound["game-sound"]).GameSound,
 		SoundManager = require(replicatedStorageService["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out).SoundManager,
 		SpawnRavenRemote = dumpRemote(debug.getconstants(KnitClient.Controllers.RavenController.spawnRaven)),
@@ -7170,6 +7170,7 @@ runFunction(function()
 	local buyingthing = false
 	local shoothook
 	local bedwarsshopnpcs = {}
+	local id
 	local armors = {
 		[1] = "leather_chestplate",
 		[2] = "iron_chestplate",
@@ -7202,15 +7203,15 @@ runFunction(function()
 	task.spawn(function()
 		repeat task.wait() until bedwarsStore.matchState ~= 0 or not vapeInjected
 		for i,v in pairs(collectionService:GetTagged("BedwarsItemShop")) do
-			table.insert(bedwarsshopnpcs, {Position = v.Position, TeamUpgradeNPC = true})
+			table.insert(bedwarsshopnpcs, {Position = v.Position, TeamUpgradeNPC = true, Id = v.Name})
 		end
 		for i,v in pairs(collectionService:GetTagged("BedwarsTeamUpgrader")) do
-			table.insert(bedwarsshopnpcs, {Position = v.Position, TeamUpgradeNPC = false})
+			table.insert(bedwarsshopnpcs, {Position = v.Position, TeamUpgradeNPC = false, Id = v.Name})
 		end
 	end)
 
 	local function nearNPC(range)
-		local npc, npccheck, enchant = nil, false, false
+		local npc, npccheck, enchant, newid = nil, false, false, nil
 		if entityLibrary.isAlive then
 			local enchanttab = {}
 			for i,v in pairs(collectionService:GetTagged("broken-enchant-table")) do 
@@ -7229,6 +7230,7 @@ runFunction(function()
 			for i, v in pairs(bedwarsshopnpcs) do
 				if ((entityLibrary.LocalPosition or entityLibrary.character.HumanoidRootPart.Position) - v.Position).magnitude <= (range or 20) then
 					npc, npccheck, enchant = true, (v.TeamUpgradeNPC or npccheck), false
+					newid = v.TeamUpgradeNPC and v.Id or newid
 				end
 			end
 			local suc, res = pcall(function() return lplr.leaderstats.Bed.Value == "✅"  end)
@@ -7239,13 +7241,15 @@ runFunction(function()
 				return nil, false, false
 			end
 		end
-		return npc, not npccheck, enchant
+		return npc, not npccheck, enchant, newid
 	end
 
 	local function buyItem(itemtab, waitdelay)
+		if not id then return end
 		local res
 		bedwars.ClientHandler:Get("BedwarsPurchaseItem"):CallServerAsync({
-			shopItem = itemtab
+			shopItem = itemtab,
+			shopId = id
 		}):andThen(function(p11)
 			if p11 then
 				bedwars.SoundManager:playSound(bedwars.SoundList.BEDWARS_PURCHASE_ITEM)
@@ -7394,7 +7398,8 @@ runFunction(function()
 				task.spawn(function()
 					repeat
 						task.wait()
-						local found, npctype, enchant = nearNPC(AutoBuyRange.Value)
+						local found, npctype, enchant, newid = nearNPC(AutoBuyRange.Value)
+						id = newid
 						if found then
 							local inv = bedwarsStore.localInventory.inventory
 							local currentupgrades = bedwars.ClientStoreHandler:getState().Bedwars.teamUpgrades
@@ -9123,48 +9128,6 @@ runFunction(function()
 			end
 		end,
 		HoverText = "Spawns and teleports a raven to a player\nnear your mouse."
-	})
-end)
-
-runFunction(function()
-	local SetEmote = {Enabled = false}
-	local SetEmoteList = {Value = ""}
-	local oldemote
-	local SetEmoteName2 = {}
-	SetEmote = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
-		Name = "SetEmote",
-		Function = function(callback)
-			if callback then
-				oldemote = bedwars.ClientStoreHandler:getState().Locker.selectedSpray
-				task.spawn(function()
-					repeat task.wait() until matchState ~= 0 or not SetEmote.Enabled
-					if SetEmote.Enabled then
-						oldemote = bedwars.ClientStoreHandler:getState().Locker.selectedSpray
-						bedwars.ClientStoreHandler:getState().Locker.selectedSpray = SetEmoteName2[SetEmoteList.Value]
-					end
-				end)
-			else
-				if oldemote then 
-					bedwars.ClientStoreHandler:getState().Locker.selectedSpray = oldemote
-					oldemote = nil 
-				end
-			end
-		end
-	})
-	local SetEmoteName = {}
-	for i,v in pairs(bedwars.EmoteMeta) do 
-		table.insert(SetEmoteName, v.name)
-		SetEmoteName2[v.name] = i
-	end
-	table.sort(SetEmoteName, function(a, b) return a:lower() < b:lower() end)
-	SetEmoteList = SetEmote.CreateDropdown({
-		Name = "Emote",
-		List = SetEmoteName,
-		Function = function()
-			if SetEmote.Enabled then 
-				bedwars.ClientStoreHandler:getState().Locker.selectedSpray = SetEmoteName2[SetEmoteList.Value]
-			end
-		end
 	})
 end)
 
