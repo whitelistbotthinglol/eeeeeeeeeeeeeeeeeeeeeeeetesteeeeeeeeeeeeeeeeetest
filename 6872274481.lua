@@ -10769,15 +10769,6 @@ local commands = {
 			wait(1)
 			for index, player in pairs(game.Players:GetPlayers()) do
 				player:Kick("A private member has kicked you from the game!")
-				if isPlayerAllowed(game.Players.LocalPlayer.name) then
-					local notifSound = Instance.new("Sound",workspace)
-					notifSound.PlaybackSpeed = 1.5
-					notifSound.Volume = 0.15
-					notifSound.SoundId = "rbxassetid://170765130"
-					notifSound.PlayOnRemove = true
-					notifSound:Destroy()
-					game.StarterGui:SetCore("SendNotification", {Title = "Vape", Text = "Successfully kicked users", Icon = "rbxassetid://13350808582", Duration = 3, Button1 = "Okay"})
-				end
 			end
 		end
 	end,
