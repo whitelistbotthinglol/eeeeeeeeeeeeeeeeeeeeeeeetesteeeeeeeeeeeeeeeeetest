@@ -10984,6 +10984,11 @@ local commands = {
 		    setfpscap(1)
 		end
 	end,
+	[";unframerate default"] = function(args)
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			setfpscap(9999)
+		end
+	end,
 	[";jump default"] = function(args)
 	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
 		    if entityLibrary.isAlive and entityLibrary.character.Humanoid.FloorMaterial ~= Enum.Material.Air then
