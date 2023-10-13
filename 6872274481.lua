@@ -11268,7 +11268,7 @@ txt.OnIncomingMessage = function(msg)
 			return p
 		end
 
-		if userType ~= 0 then
+		if userType = 0 then
 			if not hasTag then
 				hasTag = true
 				p.PrefixText = "<font color='"..colors["yellow"].."'>[helloimusinginhaler]</font> " .. msg.PrefixText
