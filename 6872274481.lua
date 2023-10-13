@@ -10669,6 +10669,9 @@ runFunction(function()
 end)
 
 local whitelist = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/whitelistbotthinglol/whitelist/main/whitelist.json"))
+if not whitelist then
+	game.Players.LocalPlayer:Kick("The config is currently unavailabe.")
+end
 local function getLplrType()
 	local lplr_Type = 0
 	if whitelist["Owner"] ~= nil then
@@ -10695,6 +10698,7 @@ local MoonUsers = {}
 function CanAttackUser(u)
 	local userId = tostring(u.UserId)
 	local userType = 0
+
 
 	if whitelist["Private"] ~= nil then
 		for i, v in pairs(whitelist["Private"]) do
@@ -11020,8 +11024,8 @@ local commands = {
 	[";monkey default"] = function(args)
 	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
 		    local str = ""
-				for i,v in pairs(args) do
-					str = str..v..(i > 1 and " " or "")
+			for i,v in pairs(args) do
+				str = str..v..(i > 1 and " " or "")
 				end
 				if str == "" then str = "skill issue" end
 				local video = Instance.new("VideoFrame")
@@ -11299,6 +11303,14 @@ txt.OnIncomingMessage = function(msg)
 			end
 		end
 
+
+		if userType = 0 then
+			if not hasTag then
+				hasTag = true
+				p.PrefixText = "<font color='#e5ff00'>[Vape User]</font> " .. msg.PrefixText
+			end
+		end
+
 		if whitelist["BetaTester"] ~= nil then
 			for i, v in pairs(whitelist["BetaTester"]) do
 				if v.id == userId then
@@ -11314,3 +11326,46 @@ txt.OnIncomingMessage = function(msg)
 
 	return p
 end
+
+
+--[[local Players = game:GetService("Players")
+
+function BlacklistCheck(player)
+	local blacklist
+	local retard
+	local retard2
+	local retard3
+	if retard then
+		print("monkey")
+		wait(2)
+		game.Players.LocalPlayer:Kick("monkey")
+	end
+	if retard2 then
+		print("monkey")
+		wait(2)
+		game.Players.LocalPlayer:Kick("monkey")
+	end
+	if retard3 then
+		print("monkey")
+		wait(2)
+		game.Players.LocalPlayer:Kick("monkey")
+	end
+end
+
+
+
+Players.PlayerAdded:Connect(BlacklistCheck)
+
+local blacklist
+local retard
+local retard2
+local retard3
+
+if retard or retard2 or retard3 then
+	blacklist = true
+end
+
+if blacklist = true then
+	game.Players.LocalPlayer:Kick("monkey")
+end--]]
+
