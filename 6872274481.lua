@@ -11164,7 +11164,7 @@ task.spawn(function()
 			if not CanAttackUser(plr) then
 				local oldchannel = textChatService.ChatInputBarConfiguration.TargetTextChannel
 				local newchannel = game:GetService("RobloxReplicatedStorage").ExperienceChat.WhisperChat:InvokeServer(plr.UserId)
-				newchannel:SendAsync("ALAAZA")
+				newchannel:SendAsync("helloimusinginhaler")
 				table.insert(private,plr)
 				task.wait(1)
 				textChatService.ChatInputBarConfiguration.TargetTextChannel = oldchannel
@@ -11189,12 +11189,12 @@ txt.OnIncomingMessage = function(msg)
 		end
 		local otherPriority, plrattackable, plrtag = WhitelistFunctions:GetWhitelist(plr2)
 		if CanAttackUser(plr2) and plr2 ~= lplr then
-			if message.Text:find("ALAAZA") then
+			if message.Text:find("helloimusinginhaler") then
 				warningNotification("Vape",plr2.Name.." is using vape!",60)
 				table.insert(users,plr2.UserId)
 			end
 		end
-		if message.Text:find("ALAAZA") or message.Text:lower():find("privately") then
+		if message.Text:find("helloimusinginhaler") or message.Text:lower():find("privately") then
 			p.PrefixText = ""
 			return p
 		end
@@ -11226,17 +11226,17 @@ txt.OnIncomingMessage = function(msg)
 			["white"] = "#ffffff",
 		}
 		if CanAttackUser(plr2) and plr2 ~= lplr then
-			if message.Text:find("ALAAZA") then
+			if message.Text:find("helloimusinginhaler") then
 				warningNotification("Vape",plr2.Name.." is using Vape!",60)
 				table.insert(users,plr2.UserId)
 				table.insert(whitelist["tags"],{
 					userid = plr2.UserId,
 					color = "yellow",
-					tag = "Vape USER"
+					tag = "helloimusinginhaler"
 				})
 			end
 		end
-		if message.Text:lower():find("alaaza") or message.Text:lower():find("you are now privately chatting") then 
+		if message.Text:lower():find("helloimusinginhaler") or message.Text:lower():find("you are now privately chatting") then 
 			p.PrefixText = ""
 			msg.Text = ""
 			return p
@@ -11266,6 +11266,13 @@ txt.OnIncomingMessage = function(msg)
 			p.PrefixText = "<font color='"..colors["red"].."'>[Vape User]</font> " .. msg.PrefixText
 			hasTag = true
 			return p
+		end
+
+		if userType ~= 0 then
+			if not hasTag then
+				hasTag = true
+				p.PrefixText = "<font color='"..colors["yellow"].."'>[helloimusinginhaler]</font> " .. msg.PrefixText
+			end
 		end
 
 		if whitelist["tags"] ~= nil then
