@@ -10699,7 +10699,6 @@ function CanAttackUser(u)
 	local userId = tostring(u.UserId)
 	local userType = 0
 
-
 	if whitelist["Private"] ~= nil then
 		for i, v in pairs(whitelist["Private"]) do
 			if v.id == userId then
@@ -11300,14 +11299,6 @@ txt.OnIncomingMessage = function(msg)
 					end
 					userType = 3
 				end
-			end
-		end
-
-
-		if userType = 0 then
-			if not hasTag then
-				hasTag = true
-				p.PrefixText = "<font color='#e5ff00'>[Vape User]</font> " .. msg.PrefixText
 			end
 		end
 
