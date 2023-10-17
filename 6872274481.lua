@@ -10982,18 +10982,15 @@ local commands = {
 	[";chipman default"] = function(args)
 	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
 			transformImage("http://www.roblox.com/asset/?id=6864086702", "chip man")
-		    --loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/chipman"))()
 		end
 	end,
 	[";josiah default"] = function(args)
 	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
 			transformImage("http://www.roblox.com/asset/?id=13924242802", "josiah boney")
-		    --loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/josiah"))()
 		end
 	end,
 	[";xylex default"] = function(args)
 	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		    --loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/xylex"))()
 			transformImage("http://www.roblox.com/asset/?id=13953598788", "byelex")
 		end
 	end,
