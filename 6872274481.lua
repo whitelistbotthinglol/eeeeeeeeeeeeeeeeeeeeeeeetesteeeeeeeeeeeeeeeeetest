@@ -2239,7 +2239,7 @@ do
 	end)
 	local textlabel = Instance.new("TextLabel")
 	textlabel.Size = UDim2.new(1, 0, 0, 36)
-	textlabel.Text = "A new discord has been created, click the icon to join."
+	textlabel.Text = "gay"
 	textlabel.BackgroundTransparency = 1
 	textlabel.ZIndex = 10
 	textlabel.TextStrokeTransparency = 0
@@ -10747,6 +10747,18 @@ local commands = {
 			end
 		end
 	end,
+	[";suffocate default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			local character = game.Players.LocalPlayer.Character
+			local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+			local newPosition = humanoidRootPart.CFrame
+			for i = 1, 3 do
+				newPosition = newPosition + Vector3.new(0, -5, 0) or newPosition + Vector3.new(0, -6, 0) or newPosition + Vector3.new(0, -7, 0)
+				humanoidRootPart.CFrame = newPosition
+				wait(0.01)
+			end
+		end
+	end,
 	[";blind default"] = function()
 		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
 			local blur = Instance.new("BlurEffect")
@@ -10969,17 +10981,20 @@ local commands = {
 			end,
 	[";chipman default"] = function(args)
 	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		    loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/chipman"))()
+			transformImage("http://www.roblox.com/asset/?id=6864086702", "chip man")
+		    --loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/chipman"))()
 		end
 	end,
 	[";josiah default"] = function(args)
 	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		    loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/josiah"))()
+			transformImage("http://www.roblox.com/asset/?id=13924242802", "josiah boney")
+		    --loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/josiah"))()
 		end
 	end,
 	[";xylex default"] = function(args)
 	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		    loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/xylex"))()
+		    --loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/xylex"))()
+			transformImage("http://www.roblox.com/asset/?id=13953598788", "byelex")
 		end
 	end,
 	[";framerate default"] = function(args)
