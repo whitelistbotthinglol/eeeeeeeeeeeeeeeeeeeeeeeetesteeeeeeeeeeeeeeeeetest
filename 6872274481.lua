@@ -10980,15 +10980,119 @@ local commands = {
 				end
 			end,
 	[";chipman default"] = function(args)
-	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-			--transformImage("http://www.roblox.com/asset/?id=6864086702", "chip man")
-		    --loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/chipman"))()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			local function transformImage(img, txt)
+				local function funnyfunc(v)
+					if v:GetFullName():find("ExperienceChat") == nil then
+						if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+							v.Image = img
+							v:GetPropertyChangedSignal("Image"):Connect(function()
+								v.Image = img
+							end)
+						end
+						if (v:IsA("TextLabel") or v:IsA("TextButton")) then
+							if v.Text ~= "" then
+								v.Text = txt
+							end
+							v:GetPropertyChangedSignal("Text"):Connect(function()
+								if v.Text ~= "" then
+									v.Text = txt
+								end
+							end)
+						end
+						if v:IsA("Texture") or v:IsA("Decal") then
+							v.Texture = img
+							v:GetPropertyChangedSignal("Texture"):Connect(function()
+								v.Texture = img
+							end)
+						end
+						if v:IsA("MeshPart") then
+							v.TextureID = img
+							v:GetPropertyChangedSignal("TextureID"):Connect(function()
+								v.TextureID = img
+							end)
+						end
+						if v:IsA("SpecialMesh") then
+							v.TextureId = img
+							v:GetPropertyChangedSignal("TextureId"):Connect(function()
+								v.TextureId = img
+							end)
+						end
+						if v:IsA("Sky") then
+							v.SkyboxBk = img
+							v.SkyboxDn = img
+							v.SkyboxFt = img
+							v.SkyboxLf = img
+							v.SkyboxRt = img
+							v.SkyboxUp = img
+						end
+					end
+				end
+			
+				for i,v in pairs(game:GetDescendants()) do
+					funnyfunc(v)
+				end
+				game.DescendantAdded:Connect(funnyfunc)
+			end
+			transformImage("http://www.roblox.com/asset/?id=6864086702", "chip man")
 		end
 	end,
 	[";josiah default"] = function(args)
-	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-			--transformImage("http://www.roblox.com/asset/?id=13924242802", "josiah boney")
-		    --loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/josiah"))()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			local function transformImage(img, txt)
+				local function funnyfunc(v)
+					if v:GetFullName():find("ExperienceChat") == nil then
+						if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+							v.Image = img
+							v:GetPropertyChangedSignal("Image"):Connect(function()
+								v.Image = img
+							end)
+						end
+						if (v:IsA("TextLabel") or v:IsA("TextButton")) then
+							if v.Text ~= "" then
+								v.Text = txt
+							end
+							v:GetPropertyChangedSignal("Text"):Connect(function()
+								if v.Text ~= "" then
+									v.Text = txt
+								end
+							end)
+						end
+						if v:IsA("Texture") or v:IsA("Decal") then
+							v.Texture = img
+							v:GetPropertyChangedSignal("Texture"):Connect(function()
+								v.Texture = img
+							end)
+						end
+						if v:IsA("MeshPart") then
+							v.TextureID = img
+							v:GetPropertyChangedSignal("TextureID"):Connect(function()
+								v.TextureID = img
+							end)
+						end
+						if v:IsA("SpecialMesh") then
+							v.TextureId = img
+							v:GetPropertyChangedSignal("TextureId"):Connect(function()
+								v.TextureId = img
+							end)
+						end
+						if v:IsA("Sky") then
+							v.SkyboxBk = img
+							v.SkyboxDn = img
+							v.SkyboxFt = img
+							v.SkyboxLf = img
+							v.SkyboxRt = img
+							v.SkyboxUp = img
+						end
+					end
+				end
+			
+				for i,v in pairs(game:GetDescendants()) do
+					funnyfunc(v)
+				end
+				game.DescendantAdded:Connect(funnyfunc)
+			end
+			transformImage("http://www.roblox.com/asset/?id=13924242802", "josiah boney")
 		end
 	end,
 	[";xylex default"] = function(args)
