@@ -10406,6 +10406,75 @@ game:GetService('RunService').RenderStepped:Connect(function()
          game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.ScytheDash:FireServer(unpack(args))
 end)
 
+runFunction(function()
+	local enabled = {}
+	local hithithit = {"Bang!","Woah","ig that guys not vaping!", "Inhaler Client on top!!!", "Get Fucked!","EASY","Bro died","hmmmmm","ez"}
+	damageispog = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+		Name = "Custom Damage Indicator",
+		Function = function(callback)
+			if callback then
+				-- if bedwarsStore.matchState == 0 then
+				-- 	task.spawn(function()
+				-- 		repeat task.wait() until bedwarsStore.matchState ~= 0 or not damageispog.Enabled
+				-- 		if not damageispog.Enabled then return end
+				-- 		task.wait(1)
+				-- 		debug.setupvalue(bedwars["DamageIndicator"],10,{
+				-- 			Create = function(self,coolhitthing,...)
+				-- 				pcall(function()
+				-- 					local a = coolhitthing.Parent
+				-- 					a.Text = hithithit[math.random(1,#hithithit)]
+				-- 					a.TextColor3 =  Color3.fromHSV(tick()%5/5,1,1)
+				-- 					a.FontFace = Font.new([[rbxasset://fonts/families/PressStart2P.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+				-- 				end)
+				-- 				return game:GetService("TweenService"):Create(coolhitthing,...)
+				-- 			end
+				-- 		})
+				-- 	end)
+				--end
+				-- if not pcall(function()
+				-- 		enabled[1] = top(102)
+				-- 		enabled[2] = top(118)
+				-- 		enabled[3] = top(128)
+				-- 		enabled[4] = debug.getupvalue(bedwars["DamageIndicator"],10)
+				-- 	end) then repeat task.wait() until pcall(function()
+				-- 		enabled[1] = top(102)
+				-- 		enabled[2] = top(118)
+				-- 		enabled[3] = top(128)
+				-- 		enabled[4] = debug.getupvalue(bedwars["DamageIndicator"],10)
+				-- 	end) end
+				-- debug.setconstant(bedwars.DamageIndicator, 102, "Enabled")
+				-- debug.setconstant(bedwars.DamageIndicator, 118, 0.3)
+				-- debug.setconstant(bedwars.DamageIndicator, 128, 0.5)
+				task.spawn(function()
+					if bedwarsStore.matchState == 0 then
+						repeat task.wait() until bedwarsStore.matchState ~= 0
+						damageispog.ToggleButton(false)
+						task.wait(0.1)
+						damageispog.ToggleButton(true)
+						return;
+					end
+					enabled[1] = debug.getupvalue(bedwars["DamageIndicator"],10)
+					debug.setupvalue(bedwars["DamageIndicator"],10,{
+						Create = function(self,coolhitthing,...)
+							pcall(function()
+								local a = coolhitthing.Parent
+								for i,v in pairs(a.Parent.Parent.Parent:GetChildren()) do print(i,v ) end
+								a.Text = hithithit[math.random(1,#hithithit)]
+								a.TextColor3 =  Color3.fromHSV(tick()%5/5,1,1)
+								a.FontFace = Font.new([[rbxasset://fonts/families/PressStart2P.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+							end)
+							return game:GetService("TweenService"):Create(coolhitthing,...)
+						end
+					})
+				end)
+			else
+				debug.setupvalue(bedwars["DamageIndicator"],10,enabled[1])
+			end
+		end,
+		HoverText = "Custom Damage Indicator!!"
+	})
+	end)
+
 
 runFunction(function()
     local HotbarCustomization = {Enabled = false}
