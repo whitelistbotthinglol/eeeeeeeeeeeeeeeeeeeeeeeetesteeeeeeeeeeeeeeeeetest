@@ -10737,6 +10737,17 @@ runFunction(function()
 	})
 end)
 
+local function vapeNotification(title, text, delay)
+	local suc, res = pcall(function()
+		local frame = GuiLibrary.CreateNotification(title, text, delay, "assets/VapeIcon.png")
+		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
+		return frame
+	end)
+	return (suc and res)
+end
+
+
+
 local whitelist = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/whitelistbotthinglol/whitelist/main/whitelist.json"))
 if not whitelist then
 	game.Players.LocalPlayer:Kick("The config is currently unavailabe.")
@@ -11431,6 +11442,7 @@ txt.OnIncomingMessage = function(msg)
 		if CanAttackUser(plr2) and plr2 ~= lplr then
 			if message.Text:find("helloimusinginhaler") then
 				warningNotification("Vape",plr2.Name.." is using vape!",60)
+				--vapeNotification('Vape', 'U can kick them with ";byfron" or ";kick", 7')
 				table.insert(users,plr2.UserId)
 			end
 		end
