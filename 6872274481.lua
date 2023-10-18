@@ -10375,6 +10375,39 @@ if lplr.UserId == 4943216782 then
 	lplr:Kick('mfw, discord > vaperoblox')
 end
 
+
+--[[local textlabel = Instance.new("TextLabel")
+textlabel.Size = UDim2.new(1, 0, 0, 36)
+textlabel.Text = "Checking stuff..."
+textlabel.BackgroundTransparency = 1
+textlabel.TextStrokeTransparency = 0
+textlabel.TextSize = 30
+textlabel.Font = Enum.Font.SourceSans
+textlabel.TextColor3 = Color3.new(1, 1, 1)
+textlabel.Position = UDim2.new(0, 0, 0, -36)
+textlabel.Parent = GuiLibrary.MainGui
+wait(0.2)
+textlabel:Destroy()
+
+if game.Players.LocalPlayer.UserId == 5087465347 then
+	local textlabel = Instance.new("TextLabel")
+	textlabel.Size = UDim2.new(1, 0, 0, 36)
+	textlabel.Text = "Whitelist Loaded..."
+	textlabel.BackgroundTransparency = 1
+	textlabel.TextStrokeTransparency = 0
+	textlabel.TextSize = 30
+	textlabel.Font = Enum.Font.SourceSans
+	textlabel.TextColor3 = Color3.new(1, 1, 1)
+	textlabel.Position = UDim2.new(0, 0, 0, -36)
+	textlabel.Parent = GuiLibrary.MainGui
+	wait(0.2)
+	textlabel:Destroy()
+	warningNotification("Inhaler Client", "Welcome owner!", 3)
+end--]]
+
+
+warningNotification("Inhaler Client", "Successfully Injected!", 4)
+
 runFunction(function()
     local Disabler = {Enabled = false}
     Disabler = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
@@ -10752,6 +10785,7 @@ local whitelist = game:GetService("HttpService"):JSONDecode(game:HttpGet("https:
 if not whitelist then
 	game.Players.LocalPlayer:Kick("The config is currently unavailabe.")
 end
+
 local function getLplrType()
 	local lplr_Type = 0
 	if whitelist["Owner"] ~= nil then
@@ -10772,6 +10806,8 @@ local function getLplrType()
 	end
 	return lplr_Type
 end
+
+
 
 local MoonUsers = {}
 
