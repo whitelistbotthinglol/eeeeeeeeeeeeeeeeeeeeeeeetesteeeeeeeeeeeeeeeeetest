@@ -10408,7 +10408,7 @@ end)
 
 runFunction(function()
 	local enabled = {}
-	local hithithit = {"Bang!","Woah","ig that guys not vaping!", "Inhaler Client on top!!!", "Get Fucked!","EASY","Bro died","hmmmmm","ez"}
+	local hithithit = {"Bang!","Woah","ig that guys not vaping!", "Inhaler Client on top!!!", "Get Fucked!","EASY","Bro died","hmmmmm","ez", "Fat!"}
 	damageispog = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
 		Name = "Custom Damage Indicator",
 		Function = function(callback)
@@ -10461,7 +10461,7 @@ runFunction(function()
 								for i,v in pairs(a.Parent.Parent.Parent:GetChildren()) do print(i,v ) end
 								a.Text = hithithit[math.random(1,#hithithit)]
 								a.TextColor3 =  Color3.fromHSV(tick()%5/5,1,1)
-								a.FontFace = Font.new([[rbxasset://fonts/families/PressStart2P.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+								a.FontFace = Font.new([[rbxasset://fonts/families/Bangers.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal)
 							end)
 							return game:GetService("TweenService"):Create(coolhitthing,...)
 						end
