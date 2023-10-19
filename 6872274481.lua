@@ -10404,7 +10404,7 @@ local UIGradient_2 = Instance.new("UIGradient")
 WatermarkGUI.ResetOnSpawn = false
 
 WatermarkGUI.Name = "WatermarkGUI"
-WatermarkGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+WatermarkGUI.Parent = GuiLibrary.MainGui
 WatermarkGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Frame.Parent = WatermarkGUI
