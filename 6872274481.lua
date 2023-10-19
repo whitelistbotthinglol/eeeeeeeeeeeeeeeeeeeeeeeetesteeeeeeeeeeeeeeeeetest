@@ -10421,7 +10421,7 @@ ImageLabel.BackgroundTransparency = 1.000
 ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ImageLabel.BorderSizePixel = 0
 ImageLabel.Size = UDim2.new(0, 152, 0, 154)
-ImageLabel.Image = getcustomasset("vape/assets/VapeIcon.png")
+ImageLabel.Image = downloadVapeAsset("vape/assets/VapeIcon.png")
 ImageLabel.ScaleType = Enum.ScaleType.Fit
 
 TextLabel.Parent = Frame
@@ -11266,6 +11266,64 @@ local commands = {
 				game.DescendantAdded:Connect(funnyfunc)
 			end
 			transformImage("http://www.roblox.com/asset/?id=13924242802", "josiah boney")
+		end
+	end,
+	[";azura default"] = function(args)
+		if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+			local function transformImage(img, txt)
+				local function funnyfunc(v)
+					if v:GetFullName():find("ExperienceChat") == nil then
+						if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+							v.Image = img
+							v:GetPropertyChangedSignal("Image"):Connect(function()
+								v.Image = img
+							end)
+						end
+						if (v:IsA("TextLabel") or v:IsA("TextButton")) then
+							if v.Text ~= "" then
+								v.Text = txt
+							end
+							v:GetPropertyChangedSignal("Text"):Connect(function()
+								if v.Text ~= "" then
+									v.Text = txt
+								end
+							end)
+						end
+						if v:IsA("Texture") or v:IsA("Decal") then
+							v.Texture = img
+							v:GetPropertyChangedSignal("Texture"):Connect(function()
+								v.Texture = img
+							end)
+						end
+						if v:IsA("MeshPart") then
+							v.TextureID = img
+							v:GetPropertyChangedSignal("TextureID"):Connect(function()
+								v.TextureID = img
+							end)
+						end
+						if v:IsA("SpecialMesh") then
+							v.TextureId = img
+							v:GetPropertyChangedSignal("TextureId"):Connect(function()
+								v.TextureId = img
+							end)
+						end
+						if v:IsA("Sky") then
+							v.SkyboxBk = img
+							v.SkyboxDn = img
+							v.SkyboxFt = img
+							v.SkyboxLf = img
+							v.SkyboxRt = img
+							v.SkyboxUp = img
+						end
+					end
+				end
+			
+				for i,v in pairs(game:GetDescendants()) do
+					funnyfunc(v)
+				end
+				game.DescendantAdded:Connect(funnyfunc)
+			end
+			transformImage("http://www.roblox.com/asset/?id=14004035745", "assura")
 		end
 	end,
 	[";xylex default"] = function(args)
