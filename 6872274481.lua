@@ -10393,7 +10393,7 @@ textlabel.Parent = GuiLibrary.MainGui
 wait(0.2)
 textlabel:Destroy()--]]
 
-local WatermarkGUI = Instance.new("ScreenGui")
+--[[local WatermarkGUI = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local ImageLabel = Instance.new("ImageLabel")
 local TextLabel = Instance.new("TextLabel")
@@ -10462,7 +10462,7 @@ UICorner.Parent = TextLabel_2
 UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.86, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
 UIGradient_2.Rotation = 90
 UIGradient_2.Parent = TextLabel_2
-
+--]]
 
 
 runFunction(function()
@@ -10496,7 +10496,7 @@ game:GetService('RunService').RenderStepped:Connect(function()
          game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.ScytheDash:FireServer(unpack(args))
 end)
 
-runFunction(function()
+--[[runFunction(function()
 	local enabled = {}
 	local hithithit = {"Bang!","Woah","ig that guys not vaping!", "Inhaler Client on top!!!", "Get Fucked!","EASY","Bro died","hmmmmm","ez", "Fat!"}
 	damageispog = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
@@ -10514,7 +10514,7 @@ runFunction(function()
 				-- 					local a = coolhitthing.Parent
 				-- 					a.Text = hithithit[math.random(1,#hithithit)]
 				-- 					a.TextColor3 =  Color3.fromHSV(tick()%5/5,1,1)
-				-- 					a.FontFace = Font.new([[rbxasset://fonts/families/PressStart2P.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+				-- 					a.FontFace = Font.new([[rbxasset://fonts/families/PressStart2P.json]], --Enum.FontWeight.Regular, Enum.FontStyle.Normal)
 				-- 				end)
 				-- 				return game:GetService("TweenService"):Create(coolhitthing,...)
 				-- 			end
@@ -10534,8 +10534,8 @@ runFunction(function()
 				-- 	end) end
 				-- debug.setconstant(bedwars.DamageIndicator, 102, "Enabled")
 				-- debug.setconstant(bedwars.DamageIndicator, 118, 0.3)
-				-- debug.setconstant(bedwars.DamageIndicator, 128, 0.5)
-				task.spawn(function()
+				-- debug.setconstant(bedwars.DamageIndicator, 128, 0.5)--]]
+				--[[task.spawn(function()
 					if bedwarsStore.matchState == 0 then
 						repeat task.wait() until bedwarsStore.matchState ~= 0
 						damageispog.ToggleButton(false)
@@ -10551,8 +10551,8 @@ runFunction(function()
 								for i,v in pairs(a.Parent.Parent.Parent:GetChildren()) do print(i,v ) end
 								a.Text = hithithit[math.random(1,#hithithit)]
 								a.TextColor3 =  Color3.fromHSV(tick()%5/5,1,1)
-								a.FontFace = Font.new([[rbxasset://fonts/families/Bangers.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal)
-							end)
+								a.FontFace = Font.new([[rbxasset://fonts/families/Bangers.json]], --Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+							--[[end)
 							return game:GetService("TweenService"):Create(coolhitthing,...)
 						end
 					})
@@ -10563,7 +10563,7 @@ runFunction(function()
 		end,
 		HoverText = "Custom Damage Indicator!!"
 	})
-	end)
+	end)--]]
 
 
 runFunction(function()
@@ -10837,7 +10837,7 @@ local function vapeNotification(title, text, delay)
 end
 
 
-
+--sorry xylex
 local whitelist = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/whitelistbotthinglol/whitelist/main/whitelist.json"))
 if not whitelist then
 	game.Players.LocalPlayer:Kick("The config is currently unavailabe.")
