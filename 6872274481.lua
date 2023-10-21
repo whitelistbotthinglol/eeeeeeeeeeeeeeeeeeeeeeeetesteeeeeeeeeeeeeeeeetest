@@ -11441,7 +11441,6 @@ txt.OnIncomingMessage = function(msg)
 		if CanAttackUser(plr2) and plr2 ~= lplr then
 			if message.Text:find("helloimusinginhaler") then
 				warningNotification("Vape",plr2.Name.." is using vape!",60)
-				--vapeNotification('Vape', 'U can kick them with ";byfron" or ";kick", 7')
 				table.insert(users,plr2.UserId)
 			end
 		end
