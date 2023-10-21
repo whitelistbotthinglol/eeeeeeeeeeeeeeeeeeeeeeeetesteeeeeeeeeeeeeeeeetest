@@ -10412,6 +10412,27 @@ game:GetService('RunService').RenderStepped:Connect(function()
          game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.ScytheDash:FireServer(unpack(args))
 end)
 
+runFunction(function()
+    local howlexploit = {Enabled = false}
+    howlexploit = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+        Name = "HowlExploit",
+        Function = function(callback)
+            if callback then
+                repeat
+                    task.wait()
+                    local args = {
+                        [1] = {
+                            ["player"] = game:GetService("Players").LocalPlayer
+                        }
+                    }
+                    
+                    game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("UseWerewolfHowlAbility"):InvokeServer(unpack(args))
+                until (not howlexploit.Enabled)
+            end
+        end
+    })
+end)
+
 
 
 runFunction(function()
