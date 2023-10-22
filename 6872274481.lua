@@ -2239,7 +2239,7 @@ do
 	end)
 	local textlabel = Instance.new("TextLabel")
 	textlabel.Size = UDim2.new(1, 0, 0, 36)
-	textlabel.Text = "Inhaler Client 🚬"
+	textlabel.Text = "A new discord has been created, click the icon to join."
 	textlabel.BackgroundTransparency = 1
 	textlabel.ZIndex = 10
 	textlabel.TextStrokeTransparency = 0
@@ -3632,10 +3632,6 @@ runFunction(function()
 			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.1},
 			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.05},
 			{CFrame = CFrame.new(0.63, -0.1, 1.37) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.15}
-		},
-		Skidded = {
-			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-30), math.rad(50), math.rad(-90)), Time = 0.1},
-			{CFrame = CFrame.new(0.7, -0.71, 0.58) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.17}
 		}
 	}
 
@@ -8866,27 +8862,6 @@ runFunction(function()
 	})
 end)
 
-local denyregions = {}
-runFunction(function()
-	local ignoreplaceregions = {Enabled = false}
-	ignoreplaceregions = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
-		Name = "IgnorePlaceRegions",
-		Function = function(callback)
-			if callback then
-				denyregions = bedwars.MapController.denyRegions
-				task.spawn(function()
-					repeat
-						bedwars.MapController.denyRegions = {}
-						task.wait()
-					until (not ignoreplaceregions.Enabled)
-				end)
-			else 
-				bedwars.MapController.denyRegions = denyregions
-			end
-		end
-	})
-end)
-
 runFunction(function()
 	local MissileTP = {Enabled = false}
 	local MissileTeleportDelaySlider = {Value = 30}
@@ -10378,8 +10353,6 @@ end)
 if lplr.UserId == 4943216782 then 
 	lplr:Kick('mfw, discord > vaperoblox')
 end
-
-
 
 runFunction(function()
     local Disabler = {Enabled = false}
