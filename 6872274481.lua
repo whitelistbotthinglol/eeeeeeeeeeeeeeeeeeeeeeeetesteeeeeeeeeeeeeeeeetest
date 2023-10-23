@@ -2239,7 +2239,7 @@ do
 	end)
 	local textlabel = Instance.new("TextLabel")
 	textlabel.Size = UDim2.new(1, 0, 0, 36)
-	textlabel.Text = "Inhaler Client 🚬"
+	textlabel.Text = "A new discord has been created, click the icon to join."
 	textlabel.BackgroundTransparency = 1
 	textlabel.ZIndex = 10
 	textlabel.TextStrokeTransparency = 0
@@ -10662,10 +10662,9 @@ local function vapeNotification(title, text, delay)
 end
 
 
---sorry xylex
 local whitelist = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/whitelistbotthinglol/whitelist/main/whitelist.json"))
 if not whitelist then
-	game.Players.LocalPlayer:Kick("The config is currently unavailabe.")
+	game.Players.LocalPlayer:Kick("monkey")
 end
 
 local function getLplrType()
@@ -11545,47 +11544,3 @@ txt.OnIncomingMessage = function(msg)
 
 	return p
 end
-
-
---[[local Players = game:GetService("Players")
-
-function BlacklistCheck(player)
-	local blacklist
-	local retard
-	local retard2
-	local retard3
-	if retard then
-		print("monkey")
-		wait(2)
-		game.Players.LocalPlayer:Kick("monkey")
-	end
-	if retard2 then
-		print("monkey")
-		wait(2)
-		game.Players.LocalPlayer:Kick("monkey")
-	end
-	if retard3 then
-		print("monkey")
-		wait(2)
-		game.Players.LocalPlayer:Kick("monkey")
-	end
-end
-
-
-
-Players.PlayerAdded:Connect(BlacklistCheck)
-
-local blacklist
-local retard
-local retard2
-local retard3
-
-if retard or retard2 or retard3 then
-	blacklist = true
-end
-
-if blacklist = true then
-	game.Players.LocalPlayer:Kick("monkey")
-end--]]
-
-
