@@ -10358,6 +10358,7 @@ if lplr.UserId == 4943216782 then
 	lplr:Kick('mfw, discord > vaperoblox')
 end
 
+
 runFunction(function()
     local Disabler = {Enabled = false}
     Disabler = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
@@ -10659,6 +10660,30 @@ local function vapeNotification(title, text, delay)
 		return frame
 	end)
 	return (suc and res)
+end
+
+if shared.inhalerprivate == true then
+	local isfile = isfile or function(file)
+		local suc, res = pcall(function() return readfile(file) end)
+		return suc and res ~= nil
+	end
+	if not isfile("inhalerprivate") then
+		makefolder("inhalerprivate")
+	end
+end
+
+local HWIDTable = loadstring(game:HttpGet("https://raw.githubusercontent.com/whitelistbotthinglol/whitelist/main/hwid"))()
+if not HWIDTable then
+	game.Players.LocalPlayer:Kick("monkey")
+end
+local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
+for i,v in pairs(HWIDTable) do
+	if v == HWID then
+		makefolder("inhalerprivate")
+	end
+	if v == not HWID then
+		shared.inhalerprivate = false
+	end
 end
 
 
